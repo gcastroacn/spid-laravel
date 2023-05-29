@@ -16,7 +16,7 @@ applications based on [Laravel](https://www.laravel.com).
 
 1. Before installing this package patching must be enabled in `composer.json`.
 This is necessary because
-[this patch](https://rawgit.com/italia/spid-laravel/master/patches/php-saml-3.4.1-spid.patch)
+[this patch](https://rawgit.com/italia/spid-laravel/master/patches/php-saml-4.1.0-spid.patch)
 has to be applied to [onelogin/php-saml](https://github.com/onelogin/php-saml)
 for SPID compatibility.
 
@@ -313,34 +313,9 @@ The `SPIDEventSubscriber` class must be added to the `$subscribe` array in
 `app/Providers/EventServiceProvider.php`:
 
 ```php
-<?php
-
-namespace App\Providers;
-
-use App\Listeners\UserEventSubscriber;
-use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
- 
-class EventServiceProvider extends ServiceProvider
-{
-    /**
-     * The event listener mappings for the application.
-     *
-     * @var array
-     */
-    protected $listen = [
-        // ...
-    ];
- 
-    /**
-     * The subscriber classes to register.
-     *
-     * @var array
-     */
-    protected $subscribe = [
-        SPIDEventSubscriber::class,
-    ];
-}
-
+protected $subscribe = [
+    SPIDEventSubscriber::class,
+];
 ```
 
 The `SPIDUser` class provides `<attribute>` properties for the attributes
